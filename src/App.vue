@@ -7,7 +7,6 @@
     </div>
   </div>
 
-
   <div class="menu">
     <a v-for="a in 메뉴들" :key="a">{{ a }}</a>
   </div>
