@@ -4,6 +4,7 @@
     <div class="white-bg">
       <h4>상세페이지임</h4>  
       <p>상세페이지 내용임</p>
+      <button @click="모달창열렸니 = false">닫기</button>
     </div>
   </div>
 
@@ -11,35 +12,23 @@
     <a v-for="a in 메뉴들" :key="a">{{ a }}</a>
   </div>
 
-  <div>
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="모달창열렸니 = true">{{ products[0] }}</h4>
-    <p>50 만원</p>
-    <button @click="increase">허위매물신고</button> 
-    <span>신고수 : {{신고수[0]}} </span>
-  </div>
-  <div>
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4>{{ products[1] }}</h4>
-    <p>70 만원</p>
-    <button v-on:mouseover="increase2">허위매물신고</button>
-    <span>신고수 : {{신고수[1]}} </span>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4>{{ products[2] }}</h4>
-    <p>90 만원</p>
-    <button v-on:click="increase3">허위매물신고</button>
-    <span>신고수 : {{신고수[2]}} </span>
+  <div v-for="(a,i) in 원룸들" :key="i">
+    <img :src="원룸들[i].image" class="room-img">
+    <h4>{{ 원룸들[i].title }}</h4>
+    <p>{{ 원룸들[i].price }}원</p>
   </div>
 </template>
 
 <script>
 
+import data from './assets/oneroom.js';
+
+
 export default {
   name: 'App',
   data(){ //데이터 보관함 state
     return {
+      원룸들: data,
       모달창열렸니: false,
       신고수: [0,0,0],
       메뉴들: ['Home', 'Shop', 'About'],
@@ -79,6 +68,10 @@ div {
   width: 100%; background: white;
   border-radius: 8px;
   padding: 20px;
+}
+.white-bg button{
+  right: 10px;
+  color: blue;
 }
 
 .room-img{
